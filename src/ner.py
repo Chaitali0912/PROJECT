@@ -1,13 +1,7 @@
 import spacy
-from spacy.cli import download
 
 def load_ner_model():
-    try:
-        return spacy.load("en_core_web_sm")
-    except OSError:
-        # Fallback if not downloaded properly
-        download("en_core_web_sm")
-        return spacy.load("en_core_web_sm")
+    return spacy.load("en_core_web_sm")
 
 def extract_entities(nlp, text):
     """Extract Named Entities and return counts by type."""
