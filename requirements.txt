@@ -1,0 +1,8 @@
+streamlit>=1.40.0
+transformers>=4.40.0,<5.0.0
+sentence-transformers>=2.7.0
+scikit-learn>=1.4.0
+spacy>=3.7.0
+torch
+numpy
+pandas
