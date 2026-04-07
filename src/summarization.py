@@ -10,12 +10,8 @@ def summarize_text(pipeline_obj, text):
         return "Text is too short to summarize."
         
     try:
-        # Max length should be less than the length of the input
-        input_length = len(text.split())
-        max_len = min(130, max(50, int(input_length * 0.6)))
-        min_len = min(30, max_len - 10)
-        
-        result = pipeline_obj(text, max_length=max_len, min_length=min_len, do_sample=False)
-        return result[0]['summary_text']
+        # Let the model naturally decide length with Beam Search for quality
+        result = pipeline_obj(text, max_length=130, min_length=30, do_sample=False, num_beams=4, early_stopping=True)
+        return result[0]['summary_text'].strip()
     except Exception as e:
-        return f"Error during summarization: {str(e)}"
+        return f"[Summarization Error: {str(e)}]"
